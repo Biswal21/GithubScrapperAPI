@@ -12,7 +12,8 @@
 
 ## Architecture
 
-![App Screenshot](https://imgur.com/a/hNUK7Br)
+![Achitechture](https://user-images.githubusercontent.com/71699045/203653821-ce6d66f2-f05e-4d3f-a861-15339edbc11a.png)
+
 
 ### Design Ideology
 
