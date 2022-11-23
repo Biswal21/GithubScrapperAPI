@@ -21,29 +21,43 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+# from main import urls
+
 schema_view = get_schema_view(
-   openapi.Info(
-      title="Server API",
-      default_version='v1',
-      description="API Explorer for Server",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="google@google.com"),
-      license=openapi.License(name="BSD License"),
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
+    openapi.Info(
+        title="Server API",
+        default_version="v1",
+        description="API Explorer for Server",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="google@google.com"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
 )
 
 urlpatterns = [
-   url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-   url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-   url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    url(
+        r"^swagger(?P<format>\.json|\.yaml)$",
+        schema_view.without_ui(cache_timeout=0),
+        name="schema-json",
+    ),
+    url(
+        r"^swagger/$",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
+    url(
+        r"^redoc/$", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"
+    ),
 ]
 
 urlpatterns += [
     # Admin endpoint
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     # Auth endpoints
-    url(r'^auth/', include('djoser.urls')),
-    url(r'^auth/', include('djoser.urls.jwt')),
+    # url(r"^auth/", include("djoser.urls")),
+    # url(r"^auth/", include("djoser.urls.jwt")),
+    # Appliccation endpoints
+    path("main/", include("main.urls")),
 ]
